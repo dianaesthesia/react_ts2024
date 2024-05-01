@@ -1,0 +1,12 @@
+.images {
+    width: 100vw;
+    height: 38vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-flow: row wrap;
+}
+
+.image {
+    width: 15%;
+}

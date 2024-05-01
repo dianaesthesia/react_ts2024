@@ -1,11 +1,12 @@
 import React, {FC} from 'react';
 
 import './App.css';
+import ProductsComponent from "./components/products/ProductsComponent";
 
 const App: FC = () => {
     return (
         <div>
-            App
+            <ProductsComponent/>
         </div>
     );
 };
