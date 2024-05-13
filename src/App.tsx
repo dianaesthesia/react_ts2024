@@ -11,13 +11,12 @@ const App = () => {
 
     const getAllPostsOfUser = (userId: number) => {
         getAllPostsByUserId(userId).then(({data}) => setPosts(data));
-        console.log('.');
     };
 
     return (
         <div className={styles.App}>
-            <UsersComponent getAllPostsOfUser={getAllPostsOfUser}/>
-            <PostsComponent posts={posts}/>
+            <div className={styles.users}><UsersComponent getAllPostsOfUser={getAllPostsOfUser}/></div>
+            <div className={styles.posts}><PostsComponent posts={posts}/></div>
         </div>
     );
 };

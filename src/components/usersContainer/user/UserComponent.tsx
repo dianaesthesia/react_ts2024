@@ -10,16 +10,14 @@ interface IProps {
 const UserComponent: FC<IProps> = ({user, getAllPostsOfUser}) => {
     const {id, name, username} = user;
 
-    const onClickHandler = () => {
-        getAllPostsOfUser(id);
-    };
-
     return (
         <div>
             <div>id: {id}</div>
             <div>name: {name}</div>
             <div>username: {username}</div>
-            <button onClick={onClickHandler}>Show posts of current user
+            <button onClick={() => {
+                getAllPostsOfUser(id)
+            }}>Show posts of current user
             </button>
             <hr/>
         </div>

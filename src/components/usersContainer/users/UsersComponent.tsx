@@ -8,7 +8,9 @@ interface IProps {
     getAllPostsOfUser: (userId: number) => void
 }
 
-const UsersComponent: FC<IProps> = ({getAllPostsOfUser}) => {
+type IPropsType = IProps & { children?: React.ReactNode }
+
+const UsersComponent: FC<IPropsType> = ({getAllPostsOfUser}) => {
     const [users, setUsers] = useState<IUserModel[]>([]);
 
     useEffect(() => {
