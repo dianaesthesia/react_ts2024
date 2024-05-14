@@ -1,11 +1,12 @@
-import React, {FC} from 'react';
+import React from 'react';
 
 import './App.css';
+import PostForm from "./components/post-form/PostForm";
 
-const App: FC = () => {
+const App = () => {
     return (
         <div>
-            App
+            <PostForm/>
         </div>
     );
 };
