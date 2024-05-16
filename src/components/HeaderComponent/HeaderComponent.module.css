@@ -1,0 +1,25 @@
+.Header {
+    width: 100vw;
+    height: 15vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #500a50;
+}
+
+.Header a {
+    text-decoration: none;
+    color: #848895;
+    font-size: 3vh;
+    transition: 0.25s;
+}
+
+.Header a:hover {
+    color: white;
+    transition: 0.5s;
+}
+
+.Header a[class='active'] {
+    color: white;
+    text-decoration: underline;
+}
