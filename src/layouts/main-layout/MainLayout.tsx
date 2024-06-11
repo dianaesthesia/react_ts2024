@@ -12,6 +12,7 @@ const MainLayout: FC = () => {
     const [users, setUsers] = useState<IUserModel[]>([]);
     const [posts, setPosts] = useState<IPostModel[]>([]);
     const [comments, setComments] = useState<ICommentModel[]>([]);
+    const [selectedUserState, setSelectedUserState] = useState<IUserModel | null>(null);
 
     useEffect(() => {
         userApiService.getAll().then(({data}) => setUsers(data));
@@ -19,13 +20,16 @@ const MainLayout: FC = () => {
         commentApiService.getAll().then(({data}) => setComments(data));
     }, []);
 
+    const selectUser = (selectedUser: IUserModel) => setSelectedUserState(selectedUser);
+
     return (
         <div>
             <HeaderComponent/>
             <Context.Provider value={
                 {
                     userStore: {
-                        allUsers: users
+                        allUsers: users,
+                        setSelectedUser: (selectedUser: IUserModel) => selectUser(selectedUser)
                     },
                     postStore: {
                         allPosts: posts
@@ -37,6 +41,10 @@ const MainLayout: FC = () => {
             }>
                 <Outlet/>
             </Context.Provider>
+
+            <hr/>
+            {selectedUserState && <div>{selectedUserState.email}</div>}
+            <hr/>
         </div>
     );
 };
