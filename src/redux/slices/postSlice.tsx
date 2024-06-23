@@ -30,9 +30,9 @@ const loadPosts = createAsyncThunk(
 
 const loadPostById = createAsyncThunk(
     'postSlice/loadPostById',
-    async (_: string | undefined, thunkAPI) => {
+    async (id: string | undefined, thunkAPI) => {
         try {
-            const post = await postApiService.getById(_);
+            const post = await postApiService.getById(id);
             return thunkAPI.fulfillWithValue(post);
         } catch (e) {
             const error = e as AxiosError;
