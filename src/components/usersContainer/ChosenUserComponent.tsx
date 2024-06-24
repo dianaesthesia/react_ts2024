@@ -11,7 +11,11 @@ const ChosenUserComponent = () => {
 
     const dispatch = useAppDispatch();
     useEffect(() => {
-        dispatch(userActions.loadUserById(id))
+        if (id) {
+            dispatch(userActions.loadUserById(id));
+        } else {
+            throw new Error('id is undefined');
+        }
     }, [id, dispatch]);
 
     return (

@@ -11,7 +11,11 @@ const ChosenPostComponent = () => {
 
     const dispatch = useAppDispatch();
     useEffect(() => {
-        dispatch(postActions.loadPostById(id));
+        if (id) {
+            dispatch(postActions.loadPostById(id));
+        } else {
+            throw new Error('id is undefined')
+        }
     }, [id]);
 
     return (

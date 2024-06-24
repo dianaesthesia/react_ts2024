@@ -33,7 +33,7 @@ const loadUsers = createAsyncThunk(
 
 const loadUserById = createAsyncThunk(
     'userSlice/loadUserById',
-    async (id: string | undefined, thunkAPI) => {
+    async (id: string, thunkAPI) => {
         try {
             const user = await userApiService.getById(id);
             return thunkAPI.fulfillWithValue(user);

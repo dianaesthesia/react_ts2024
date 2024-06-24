@@ -30,7 +30,7 @@ const loadPosts = createAsyncThunk(
 
 const loadPostById = createAsyncThunk(
     'postSlice/loadPostById',
-    async (id: string | undefined, thunkAPI) => {
+    async (id: string, thunkAPI) => {
         try {
             const post = await postApiService.getById(id);
             return thunkAPI.fulfillWithValue(post);

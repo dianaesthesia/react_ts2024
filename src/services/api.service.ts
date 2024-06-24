@@ -14,7 +14,7 @@ const userApiService = {
         const response = await axiosInstance.get<IUserModel[]>(urls.users.base);
         return response.data;
     },
-    getById: async (id: string | undefined): Promise<IUserModel> => {
+    getById: async (id: string): Promise<IUserModel> => {
         const response = await axiosInstance.get<IUserModel>(urls.users.byId(id));
         return response.data;
     }
@@ -25,7 +25,7 @@ const postApiService = {
         const response = await axiosInstance.get<IPostModel[]>(urls.posts.base);
         return response.data;
     },
-    getById: async (id: string | undefined): Promise<IPostModel> => {
+    getById: async (id: string): Promise<IPostModel> => {
         const response = await axiosInstance.get<IPostModel>(urls.posts.byId(id));
         return response.data;
     }
