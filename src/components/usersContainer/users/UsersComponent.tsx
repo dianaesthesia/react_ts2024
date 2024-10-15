@@ -4,11 +4,15 @@ import {IUserModel} from "../../../models/IUserModel";
 import {userApiService} from "../../../services/api.service";
 import UserComponent from "../user/UserComponent";
 
-const UsersComponent: FC = () => {
+interface IProps {
+    getAllPostsOfUser: (userId: number) => void
+}
+
+const UsersComponent: FC<IProps> = ({getAllPostsOfUser}) => {
     const [users, setUsers] = useState<IUserModel[]>([]);
 
     useEffect(() => {
-        userApiService.getAll().then(({data: {users}}) => setUsers(users))
+        userApiService.getAll().then(users => setUsers(users))
         return () => {
             console.log('UseEffect has been done');
         }
@@ -16,11 +20,9 @@ const UsersComponent: FC = () => {
 
     return (
         <div>
-            {users.map(user => <UserComponent key={user.id} user={user}/>)}
+            {users.map(user => <UserComponent key={user.id} user={user} getAllPostsOfUser={getAllPostsOfUser}/>)}
         </div>
     );
 };
 
 export default UsersComponent;
-
-// userApiService.getAll().then(users => setUsers(users));

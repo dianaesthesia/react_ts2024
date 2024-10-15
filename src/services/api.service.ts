@@ -1,9 +1,8 @@
-import axios, {AxiosResponse} from "axios";
+import axios from "axios";
 
 import {baseURL, urls} from "../constants/urls";
 import {IUserModel} from "../models/IUserModel";
 import {IPostModel} from "../models/IPostModel";
-import {IUsersResponseModel} from "../models/IUsersResponseModel";
 
 const axiosInstance = axios.create({
     baseURL,
@@ -11,20 +10,19 @@ const axiosInstance = axios.create({
 });
 
 const userApiService = {
-    getAll: (): Promise<AxiosResponse<IUsersResponseModel>> => axiosInstance.get(urls.users.base)
+    // getAll: (): Promise<AxiosResponse<IUserModel[]>> => axiosInstance.get(urls.users.base)
+    getAll: async (): Promise<IUserModel[]> => (await axiosInstance.get(urls.users.base)).data.users // скорочений варіант
+    // !!!У ньому обовʼязково! потрібно взяти await у групу (), оскільки ми не евейтимо .data.users, а тільки наш асинхронний запит
+
+    // axiosInstance.get(urls.users.base).then(res => res.data.users) // ще один спосіб оформлення коду
 };
 
 const postApiService = {
-    getAll: (): Promise<IPostModel[]> => axiosInstance.get(urls.posts.base),
-    getByUserId: (userId: number): Promise<IPostModel> => axiosInstance.get(urls.posts.byUserId(userId))
+    getAll: async (): Promise<IPostModel[]> => {
+        let axiosResponse = await axiosInstance.get(urls.posts.base);
+        return axiosResponse.data.posts;
+    },
+    getByUserId: async (userId: number): Promise<IPostModel[]> => (await axiosInstance.get(urls.posts.byUserId(userId))).data.posts
 }
 
 export {userApiService, postApiService};
-
-
-// getAll: async (): Promise<IUserModel[]> => (await axiosInstance.get(urls.users.base)).data.users // скорочений варіант
-// !!!У ньому обовʼязково! потрібно взяти await у групу (), оскільки ми не евейтимо .data.users, а тільки наш асинхронний запит
-
-// axiosInstance.get(urls.users.base).then(res => res.data.users),
-
-// getById: (id: string): Promise<IUserModel> => axiosInstance.get(urls.users.byId(id))
