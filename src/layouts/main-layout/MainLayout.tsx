@@ -7,7 +7,6 @@ const MainLayout = () => {
     return (
         <div>
             <Outlet/>
-            <hr/>
             <PaginationComponent/>
         </div>
     );
