@@ -1,13 +1,13 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
 
-import PaginationComponent from "../../components/paginationContainer/PaginationComponent";
+import HeaderComponent from "../../components/HeaderComponent/HeaderComponent";
 
 const MainLayout = () => {
     return (
         <div>
+            <HeaderComponent/>
             <Outlet/>
-            <PaginationComponent/>
         </div>
     );
 };

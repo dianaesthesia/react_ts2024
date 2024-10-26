@@ -1,7 +1,10 @@
 import axios from "axios";
 
 import {baseURL, urls} from "../constants/urls";
-import {IRecipeResponse} from "../models/IRecipeResponse";
+import {IRecipeModel} from "../models/IRecipeModel";
+import {BaseResponseType} from "../models/BaseResponseType";
+
+type RecipesWithBaseResponseType = BaseResponseType & { recipes: IRecipeModel[] }
 
 const axiosInstance = axios.create({
     baseURL,
@@ -9,7 +12,17 @@ const axiosInstance = axios.create({
 });
 
 const recipeApiService = {
-    getAll: () => axiosInstance.get<IRecipeResponse>(urls.recipes.base, {params: {skip: '10', limit: '10'}})
+    getAll: async (pageNumber: number): Promise<RecipesWithBaseResponseType> => {
+        const skip = (pageNumber - 1) * 10;
+
+        const {data} = await axiosInstance.get<RecipesWithBaseResponseType>(urls.recipes.base, {
+            params: {
+                limit: '10',
+                skip: skip
+            }
+        });
+        return data;
+    }
 };
 
 export {recipeApiService};
