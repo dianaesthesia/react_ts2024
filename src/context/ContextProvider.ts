@@ -34,4 +34,4 @@ export const defaultValue: StoreType = {
 
 export const Context = createContext<StoreType>(defaultValue);
 
-export const useContextProvider = (): StoreType => useContext(Context);
+export const useContextProvider = (): StoreType => useContext(Context); //custom hook
