@@ -1,15 +1,16 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 
+import styles from './Header.module.css';
+
 const HeaderComponent = () => {
     return (
         <div>
-            <ul>
-                <li><NavLink to={'/'}>Authentication</NavLink></li>
-                <br/>
-                <li><NavLink to={'cars'}>Cars</NavLink></li>
+            <ul className={styles.Header}>
+                <li><NavLink to={'/'}>Home</NavLink></li>
+                <li><NavLink to={'login'}>Authentication</NavLink></li>
+                <li><NavLink to={'auth/resources'}>Cars</NavLink></li>
             </ul>
-
             <hr/>
         </div>
     );
